@@ -1,7 +1,8 @@
-
 import React from "react";
 import Navbar from "./Navbar";
-import Footer from "./Footer"; // We'll create this next
+import Footer from "./Footer";
+import AnimatedBackground from "./ui/AnimatedBackground";
+import ScrollProgress from "./ui/ScrollProgress";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -9,9 +10,11 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen bg-ghost-noir text-ghost-noir-text">
+    <div className="flex flex-col min-h-screen bg-ghost-noir text-ghost-noir-text relative overflow-x-hidden">
+      <AnimatedBackground />
+      <ScrollProgress />
       <Navbar />
-      <main className="flex-grow pt-[72px] md:pt-[88px]"> {/* Adjust pt based on navbar height */}
+      <main className="flex-grow pt-[72px] md:pt-[88px] relative z-10">
         {children}
       </main>
       <Footer />

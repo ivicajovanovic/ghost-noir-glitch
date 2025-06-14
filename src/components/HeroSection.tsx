@@ -1,34 +1,140 @@
-
 import React from "react";
 import GlowingButton from "./ui/GlowingButton";
 import SectionWrapper from "./SectionWrapper";
+import GradientText from "./ui/GradientText";
+import TypewriterText from "./ui/TypewriterText";
+import ParallaxSection from "./ui/ParallaxSection";
 
 const HeroSection: React.FC = () => {
+  const typewriterTexts = [
+    "Digital Experiences",
+    "Web3 Solutions", 
+    "AI-Powered Apps",
+    "Immersive Interfaces",
+    "Future-Ready Platforms"
+  ];
+
   return (
-    <SectionWrapper id="home" className="min-h-[calc(100vh-88px)] flex items-center justify-center text-center !pt-0 !pb-0 bg-gradient-to-br from-ghost-noir via-purple-950/30 to-cyan-950/20">
-      <div className="absolute inset-0 opacity-10 bg-repeat" style={{backgroundImage: "url('data:image/svg+xml,%3Csvg width=\"52\" height=\"26\" viewBox=\"0 0 52 26\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill-rule=\"evenodd\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.1\"%3E%3Cpath d=\"M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z\" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E')"}}></div>
-      <div className="relative z-10 max-w-3xl">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 leading-tight">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-ghost-noir-neon-cyan via-ghost-noir-neon-magenta to-ghost-noir-neon-orange">
-            Innovate.
-          </span>{" "}
-          Design.
-          <span className="block">Inspire.</span>
-        </h1>
-        <p className="text-xl md:text-2xl text-ghost-noir-text/80 mb-8 md:mb-12 max-w-xl mx-auto">
-          Ghost Noir Studio crafts visionary digital experiences that captivate and convert.
-          We blend artistry with technology to forge the future of design.
-        </p>
-        <GlowingButton variant="primary" glowIntensity="medium" onClick={() => {
-          const portfolioSection = document.getElementById('portfolio');
-          if (portfolioSection) portfolioSection.scrollIntoView({ behavior: 'smooth' });
-        }}>
-          Explore Our Work
-        </GlowingButton>
+    <SectionWrapper 
+      id="home" 
+      className="min-h-screen flex items-center justify-center text-center !pt-0 !pb-0 bg-gradient-to-br from-ghost-noir via-purple-950/30 to-cyan-950/20 relative overflow-hidden"
+    >
+      {/* Enhanced background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,0,255,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(255,165,0,0.1),transparent_50%)]" />
       </div>
-      {/* Placeholder for animated intro graphics or particles */}
-       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary h-8 w-8"><path d="m6 9 6 6 6-6"/></svg>
+
+      {/* Grid pattern overlay */}
+      <div 
+        className="absolute inset-0 opacity-[0.02]" 
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(0,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}
+      />
+
+      <ParallaxSection speed={0.3} className="relative z-10 max-w-5xl mx-auto px-4">
+        {/* Floating elements */}
+        <div className="absolute -top-20 -left-20 w-40 h-40 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        
+        <div className="space-y-8">
+          {/* Main heading with enhanced typography */}
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-tight tracking-tight">
+            <div className="mb-4">
+              <GradientText gradient="rainbow" className="animate-gradient-x">
+                Innovate.
+              </GradientText>
+            </div>
+            <div className="mb-4">
+              Design.
+            </div>
+            <div>
+              <GradientText gradient="cyber">
+                Inspire.
+              </GradientText>
+            </div>
+          </h1>
+
+          {/* Dynamic subtitle with typewriter effect */}
+          <div className="text-xl md:text-3xl lg:text-4xl text-ghost-noir-text/90 font-light max-w-4xl mx-auto">
+            <span className="block mb-2">Crafting Next-Generation</span>
+            <TypewriterText 
+              texts={typewriterTexts}
+              className="text-primary font-semibold"
+              speed={80}
+              deleteSpeed={40}
+              delayBetween={2500}
+            />
+          </div>
+
+          {/* Enhanced description */}
+          <p className="text-lg md:text-xl lg:text-2xl text-ghost-noir-text/70 max-w-3xl mx-auto leading-relaxed font-light">
+            Where cutting-edge technology meets visionary design. We transform ideas into 
+            <span className="text-primary font-medium"> immersive digital realities</span> that 
+            captivate, engage, and drive the future forward.
+          </p>
+
+          {/* Enhanced CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
+            <GlowingButton 
+              variant="primary" 
+              glowIntensity="strong" 
+              className="text-lg px-10 py-4 group relative overflow-hidden"
+              onClick={() => {
+                const portfolioSection = document.getElementById('portfolio');
+                if (portfolioSection) portfolioSection.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <span className="relative z-10">Explore Our Universe</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            </GlowingButton>
+            
+            <GlowingButton 
+              variant="secondary" 
+              glowIntensity="medium"
+              className="text-lg px-10 py-4 border border-secondary/30 bg-transparent hover:bg-secondary/10"
+              onClick={() => {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Start Your Journey
+            </GlowingButton>
+          </div>
+
+          {/* Stats or features */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-16 max-w-4xl mx-auto">
+            {[
+              { number: "100+", label: "Projects Delivered", icon: "🚀" },
+              { number: "50+", label: "Happy Clients", icon: "⭐" },
+              { number: "24/7", label: "Support Available", icon: "🛡️" }
+            ].map((stat, index) => (
+              <div key={index} className="text-center group">
+                <div className="text-4xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                  {stat.icon}
+                </div>
+                <div className="text-3xl font-bold text-primary mb-1">{stat.number}</div>
+                <div className="text-ghost-noir-text/60 text-sm uppercase tracking-wider">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </ParallaxSection>
+
+      {/* Enhanced scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 animate-bounce">
+        <span className="text-xs text-ghost-noir-text/60 uppercase tracking-wider">Scroll to Explore</span>
+        <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse" />
+        </div>
       </div>
     </SectionWrapper>
   );
